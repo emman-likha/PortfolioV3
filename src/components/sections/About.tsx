@@ -43,69 +43,68 @@ export const About: React.FC = () => {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Intersection observers for scroll animations
-  const headerObserver = useIntersectionObserver({ threshold: 0.3 });
   const timelineObserver = useIntersectionObserver({ threshold: 0.1 });
   const featuresObserver = useIntersectionObserver({ threshold: 0.2 });
 
   const timelineData = [
     {
-      year: '2024',
-      title: 'Senior Full-Stack Developer',
-      company: 'Tech Innovation Corp',
-      location: 'Remote',
-      description: 'Leading development of modern web applications using React, Node.js, and cloud technologies. Mentoring junior developers and implementing best practices.',
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600',
-      icon: <Award size={20} />,
-      technologies: ['React', 'Node.js', 'TypeScript', 'AWS'],
-      achievements: [
-        'Led team of 5 developers',
-        'Improved app performance by 40%',
-        'Implemented CI/CD pipeline'
-      ]
-    },
-    {
-      year: '2022',
-      title: 'Full-Stack Developer',
-      company: 'Digital Solutions Ltd',
-      location: 'San Francisco, CA',
-      description: 'Developed and maintained multiple client projects, focusing on responsive design and optimal user experience across various platforms.',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600',
+      year: '2025',
+      title: 'Web Developer | SEO Specialist',
+      company: "Ray's LLC",
+      location: 'Part Time - Present',
+      description: 'Built and maintained websites using Next.js and AI-assisted development tools in a collaborative, fast-paced coding environment. Executed SEO strategies and actively participated in team meetings.',
+      image: '/Seo-Gsite.png',
       icon: <Code size={20} />,
-      technologies: ['React', 'Express.js', 'MongoDB', 'Docker'],
+      technologies: ['Next.js', 'AI Tools', 'SEO', 'Google Sites'],
       achievements: [
-        'Built 15+ client projects',
-        'Reduced load times by 60%',
-        'Implemented responsive designs'
+        'Built and maintained websites using Next.js and AI-assisted development tools',
+        'Executed SEO strategies using Google Sites and Entity Ranker to improve search visibility',
+        'Actively participated in team meetings to contribute ideas and align on project goals'
       ]
     },
     {
-      year: '2020',
-      title: 'Frontend Developer',
-      company: 'Creative Web Studio',
-      location: 'New York, NY',
-      description: 'Specialized in creating beautiful, interactive user interfaces with modern JavaScript frameworks and cutting-edge design principles.',
+      year: '2025',
+      title: 'Junior AI Developer',
+      company: 'Shore 360',
+      location: 'Internship',
+      description: 'Assisted in the design and development of AI-driven systems for enhanced traffic safety and management. Gathered training data for AI models and conducted accuracy testing.',
+      image: '/Shore-360.jpg',
+      icon: <Zap size={20} />,
+      technologies: ['AI/ML', 'Python', 'Data Analysis', 'Testing'],
+      achievements: [
+        'Assisted in the design and development of AI-driven system for enhanced traffic safety',
+        'Gathered data for training AI models used in the risk reduction tool for temporary traffic management',
+        'Conducted accuracy testing of AI models'
+      ]
+    },
+    {
+      year: '2022-2025',
+      title: 'Creative Artist',
+      company: 'Hooplife Sports Apparel',
+      location: 'Remote',
+      description: 'Created mock-ups for posting and ready-to-print files. Designed jerseys daily with focus on sports apparel and creative design solutions.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
       icon: <Palette size={20} />,
-      technologies: ['JavaScript', 'Vue.js', 'CSS3', 'Figma'],
+      technologies: ['Design Software', 'Mock-ups', 'Print Design', 'Creative Suite'],
       achievements: [
-        'Designed 20+ UI components',
-        'Improved user engagement by 35%',
-        'Created design system'
+        'Create mock ups for posting and ready to print files',
+        'Designed 1 - 3 jerseys daily',
+        'Developed creative solutions for sports apparel design'
       ]
     },
     {
-      year: '2019',
-      title: 'Junior Developer',
-      company: 'StartUp Ventures',
-      location: 'Austin, TX',
-      description: 'Started my professional journey learning modern web development practices and contributing to various startup projects.',
+      year: '2019-2020',
+      title: 'Freelance Video Editor',
+      company: 'Sushma Home Selling Team',
+      location: 'Freelance',
+      description: 'Created infographic videos about real estate and ad-like reels for social media posting to enhance marketing efforts.',
       image: 'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=600',
-      icon: <Zap size={20} />,
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'Git'],
+      icon: <Award size={20} />,
+      technologies: ['Video Editing', 'Infographics', 'Social Media', 'Marketing'],
       achievements: [
-        'Completed 50+ coding challenges',
-        'Built first production app',
-        'Learned agile methodology'
+        'Create infographic video about real-estate',
+        'Create ad-like reels for social media posting',
+        'Enhanced marketing efforts through video content'
       ]
     }
   ];
@@ -276,10 +275,7 @@ export const About: React.FC = () => {
                               </div>
                             </div>
 
-                            {/* Description */}
-                            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-3">
-                              {item.description}
-                            </p>
+
 
                             {/* Technologies */}
                             <div className="mb-3">
@@ -296,10 +292,10 @@ export const About: React.FC = () => {
                             </div>
                           </div>
 
-                          {/* Right Column - Achievements */}
+                          {/* Right Column - Contributions */}
                           <div>
                             <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
-                              Key Achievements
+                              Contributions
                             </h5>
                             <ul className="space-y-2">
                               {item.achievements.map((achievement, achIndex) => (
@@ -329,25 +325,44 @@ export const About: React.FC = () => {
         {/* About Content */}
         <div
           ref={featuresObserver.ref}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-5xl mx-auto"
         >
-          <div className={`space-y-6 transition-all duration-1000 ease-out ${
+          <div className={`transition-all duration-1000 ease-out ${
             featuresObserver.hasIntersected
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
           }`}
           style={{ transitionDelay: '200ms' }}
           >
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-              My journey in web development started with a curiosity about how things work on the internet.
-              Over the years, I've honed my skills in modern frameworks and technologies, always staying
-              current with the latest industry trends.
-            </p>
-            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-              When I'm not coding, you'll find me exploring new technologies, contributing to open-source
-              projects, or sharing knowledge with the developer community. I believe in continuous learning
-              and helping others grow in their tech journey.
-            </p>
+            {/* About Box */}
+            <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-xl p-8 md:p-12 overflow-hidden">
+              {/* Decorative gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-transparent to-orange-50 dark:from-orange-900/10 dark:via-transparent dark:to-orange-900/10 opacity-50"></div>
+
+              {/* Decorative border accent */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500"></div>
+
+              {/* Content */}
+              <div className="relative z-10 space-y-8 text-center">
+                <div className="space-y-6">
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-xl md:text-2xl font-medium">
+                    My journey in <span className="text-orange-500 font-semibold">web development</span> started with a curiosity about how things work on the internet.
+                    Over the years, I've honed my skills in <span className="text-orange-500 font-semibold">modern frameworks and technologies</span>, always staying
+                    current with the <span className="text-orange-500 font-semibold">latest industry trends</span>.
+                  </p>
+
+                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-xl md:text-2xl font-medium">
+                    When I'm not coding, you'll find me <span className="text-orange-500 font-semibold">exploring new technologies</span>, contributing to <span className="text-orange-500 font-semibold">open-source
+                    projects</span>, or sharing knowledge with the <span className="text-orange-500 font-semibold">developer community</span>. I believe in <span className="text-orange-500 font-semibold">continuous learning</span>
+                    and helping others grow in their <span className="text-orange-500 font-semibold">tech journey</span>.
+                  </p>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full opacity-10 blur-xl"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-orange-400 to-red-500 rounded-full opacity-10 blur-xl"></div>
+            </div>
           </div>
         </div>
       </div>
