@@ -49,7 +49,7 @@ export const Hero: React.FC = () => {
           {/* Left Side - Content */}
           <div className="flex flex-col justify-center space-y-8 lg:pr-8">
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white mb-6 pb-2 leading-tight">
                 <span className="block">Hello, I'm</span>
                 <span className="block bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 bg-clip-text text-transparent">
                   John Emmanuel

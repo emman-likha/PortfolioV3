@@ -152,25 +152,9 @@ export const About: React.FC = () => {
 
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="pt-12 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header with scroll animation */}
-        <div
-          ref={headerObserver.ref}
-          className={`text-center mb-16 transition-all duration-1000 ease-out ${
-            headerObserver.hasIntersected
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            About Me
-          </h2>
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            I'm a passionate full-stack developer with over 5 years of experience building
-            modern web applications. I love turning complex problems into simple, beautiful solutions.
-          </p>
-        </div>
+
 
         {/* Timeline Section */}
         <div
@@ -186,7 +170,7 @@ export const About: React.FC = () => {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
           }`}>
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 pb-2 leading-tight bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 bg-clip-text text-transparent bg-[length:200%_100%] animate-[gradient_3s_ease-in-out_infinite]">
               My Journey
             </h3>
             <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">

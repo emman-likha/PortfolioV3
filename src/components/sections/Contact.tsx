@@ -25,7 +25,7 @@ export const Contact: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Clean Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 pb-2 leading-tight">
             Let's Work Together
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
