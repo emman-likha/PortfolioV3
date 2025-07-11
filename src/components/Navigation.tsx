@@ -5,14 +5,36 @@ import { useTheme } from '../contexts/ThemeContext';
 export const Navigation: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState('home');
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ];
+
+  // Scroll detection for active section
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.id)).filter(Boolean);
+      const scrollPosition = window.scrollY + 100; // Offset for better detection
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(navItems[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -47,18 +69,36 @@ export const Navigation: React.FC = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="flex items-center space-x-1">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="relative px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 rounded-xl transition-all duration-300 group"
-                    data-cursor="pointer"
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    <div className="absolute inset-0 bg-white/20 dark:bg-slate-800/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </a>
-                ))}
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group ${
+                        isActive
+                          ? 'text-orange-600 dark:text-orange-400'
+                          : 'text-slate-700 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400'
+                      }`}
+                      data-cursor="pointer"
+                    >
+                      <span className="relative z-10">{item.name}</span>
+
+                      {/* Background hover effect */}
+                      <div className={`absolute inset-0 bg-white/20 dark:bg-slate-800/20 rounded-xl transition-opacity duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`} />
+                      <div className={`absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl transition-opacity duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`} />
+
+                      {/* Active underline */}
+                      <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-300 ${
+                        isActive ? 'w-8 opacity-100' : 'w-0 opacity-0 group-hover:w-6 group-hover:opacity-70'
+                      }`} />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
@@ -114,21 +154,33 @@ export const Navigation: React.FC = () => {
                 
                 {/* Navigation Links */}
                 <div className="space-y-2">
-                {navItems.map((item, index) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block px-4 py-3 text-base font-medium text-slate-700 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 rounded-xl transition-all duration-300 hover:bg-orange-500/10 dark:hover:bg-orange-500/10 hover:transform hover:translate-x-1"
-                    onClick={() => setIsMenuOpen(false)}
-                    data-cursor="pointer"
-                    style={{
-                      animationDelay: `${index * 50}ms`,
-                      animation: 'slideInFromTop 0.3s ease-out forwards'
-                    }}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navItems.map((item, index) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`relative block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300 hover:transform hover:translate-x-1 ${
+                        isActive
+                          ? 'text-orange-600 dark:text-orange-400 bg-orange-500/10 dark:bg-orange-500/10'
+                          : 'text-slate-700 dark:text-slate-300 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-500/10 dark:hover:bg-orange-500/10'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                      data-cursor="pointer"
+                      style={{
+                        animationDelay: `${index * 50}ms`,
+                        animation: 'slideInFromTop 0.3s ease-out forwards'
+                      }}
+                    >
+                      {item.name}
+
+                      {/* Active indicator for mobile */}
+                      {isActive && (
+                        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-gradient-to-b from-orange-500 to-red-500 rounded-r-full" />
+                      )}
+                    </a>
+                  );
+                })}
                 </div>
               </div>
             </div>

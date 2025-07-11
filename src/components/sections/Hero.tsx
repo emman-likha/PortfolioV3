@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import Orb from '../Orb';
 
+// Custom hook for typewriter effect
+const useTypewriter = (words: string[], typingSpeed: number = 100, deletingSpeed: number = 50, pauseDuration: number = 2000) => {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < currentWord.length) {
+          setCurrentText(currentWord.slice(0, currentText.length + 1));
+        } else {
+          // Finished typing, start deleting after pause
+          setTimeout(() => setIsDeleting(true), pauseDuration);
+        }
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(currentText.slice(0, -1));
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, isDeleting ? deletingSpeed : typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
+
+  return currentText;
+};
+
 export const Hero: React.FC = () => {
+  const roles = ['Web Developer', 'Graphic Designer', 'Web3 Developer', 'Video Editor'];
+  const typewriterText = useTypewriter(roles, 100, 50, 2000);
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen">
@@ -17,8 +55,9 @@ export const Hero: React.FC = () => {
                   John Emmanuel
                 </span>
               </h1>
-              <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-4">
-                Full-Stack Developer
+              <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-4 min-h-[2rem]">
+                I am a <span className="text-orange-500 font-semibold">{typewriterText}</span>
+                <span className="animate-pulse text-orange-500">|</span>
               </p>
               <p className="text-lg text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
                 I craft beautiful, functional, and user-centered digital experiences that make a difference.
