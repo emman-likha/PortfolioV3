@@ -82,8 +82,8 @@ export const Hero: React.FC = () => {
                 View Resume
               </button>
               <button
+                onClick={openMailPopup}
                 className="inline-flex items-center px-8 py-3 border border-slate-300 dark:border-slate-600 text-base font-medium rounded-lg text-slate-700 dark:text-slate-300 bg-white/60 dark:bg-slate-800/60 hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm"
-                data-cursor="pointer"
               >
                 <Mail className="mr-2" size={20} />
                 Get In Touch
@@ -107,12 +107,6 @@ export const Hero: React.FC = () => {
               >
                 <Linkedin size={24} />
               </a>
-              <button
-                onClick={openMailPopup}
-                className="p-3 rounded-full bg-white/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700 transition-all duration-200 transform hover:scale-110 backdrop-blur-sm shadow-sm hover:shadow-md"
-              >
-                <Mail size={24} />
-              </button>
             </div>
           </div>
 

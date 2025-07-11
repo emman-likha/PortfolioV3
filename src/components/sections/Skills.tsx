@@ -85,7 +85,7 @@ export const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <section id="skills" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen flex flex-col justify-center">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">

@@ -204,7 +204,7 @@ export const Projects: React.FC = () => {
           </div>
 
           {projects.length > 1 && (
-            <div className="flex justify-center space-x-2 mt-8">
+            <div className="flex justify-center space-x-2 mt-4">
               {projects.map((_, index) => (
                 <button
                   key={index}
