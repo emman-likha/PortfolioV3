@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, Eye, X } from 'lucide-react';
 import Orb from '../Orb';
+import { MailPopup } from '../MailPopup';
 
 // Custom hook for typewriter effect
 const useTypewriter = (words: string[], typingSpeed: number = 100, deletingSpeed: number = 50, pauseDuration: number = 2000) => {
@@ -42,9 +43,12 @@ export const Hero: React.FC = () => {
   const roles = ['Web Developer', 'Graphic Designer', 'Web3 Developer', 'Video Editor'];
   const typewriterText = useTypewriter(roles, 100, 50, 2000);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const [isMailPopupOpen, setIsMailPopupOpen] = useState(false);
 
   const openResumeModal = () => setIsResumeModalOpen(true);
   const closeResumeModal = () => setIsResumeModalOpen(false);
+  const openMailPopup = () => setIsMailPopupOpen(true);
+  const closeMailPopup = () => setIsMailPopupOpen(false);
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen">
@@ -88,26 +92,27 @@ export const Hero: React.FC = () => {
 
             <div className="flex space-x-6">
               <a
-                href="#"
+                href="https://github.com/emman-likha"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700 transition-all duration-200 transform hover:scale-110 backdrop-blur-sm shadow-sm hover:shadow-md"
-                data-cursor="pointer"
               >
                 <Github size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/john-emmanuel-bulaon/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700 transition-all duration-200 transform hover:scale-110 backdrop-blur-sm shadow-sm hover:shadow-md"
-                data-cursor="pointer"
               >
                 <Linkedin size={24} />
               </a>
-              <a
-                href="#"
+              <button
+                onClick={openMailPopup}
                 className="p-3 rounded-full bg-white/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700 transition-all duration-200 transform hover:scale-110 backdrop-blur-sm shadow-sm hover:shadow-md"
-                data-cursor="pointer"
               >
                 <Mail size={24} />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -230,6 +235,9 @@ export const Hero: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Mail Popup */}
+      <MailPopup isOpen={isMailPopupOpen} onClose={closeMailPopup} />
 
     </section>
   );

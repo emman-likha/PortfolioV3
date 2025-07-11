@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigation } from './Navigation';
 import { GridBackground } from './GridBackground';
-import { CursorEffect } from './CursorEffect';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,7 +15,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="relative min-h-screen">
       <GridBackground />
-      <CursorEffect />
       <Navigation />
       <main className="relative z-10">
         {children}

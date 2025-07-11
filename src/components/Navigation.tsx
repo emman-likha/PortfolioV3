@@ -52,7 +52,6 @@ export const Navigation: React.FC = () => {
           <button
             onClick={toggleTheme}
             className="relative p-4 text-slate-700 dark:text-slate-300 hover:bg-orange-500/10 dark:hover:bg-orange-500/10 transition-all duration-300 group overflow-hidden rounded-2xl"
-            data-cursor="pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
@@ -112,7 +111,6 @@ export const Navigation: React.FC = () => {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="relative p-4 rounded-2xl text-slate-700 dark:text-slate-300 hover:bg-orange-500/10 dark:hover:bg-orange-500/10 transition-all duration-300 group overflow-hidden"
-            data-cursor="pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
