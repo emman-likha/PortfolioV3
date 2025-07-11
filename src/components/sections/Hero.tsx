@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, Eye, X } from 'lucide-react';
 import Orb from '../Orb';
 
 // Custom hook for typewriter effect
@@ -41,6 +41,10 @@ const useTypewriter = (words: string[], typingSpeed: number = 100, deletingSpeed
 export const Hero: React.FC = () => {
   const roles = ['Web Developer', 'Graphic Designer', 'Web3 Developer', 'Video Editor'];
   const typewriterText = useTypewriter(roles, 100, 50, 2000);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
+  const openResumeModal = () => setIsResumeModalOpen(true);
+  const closeResumeModal = () => setIsResumeModalOpen(false);
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen">
@@ -66,11 +70,12 @@ export const Hero: React.FC = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
+                onClick={openResumeModal}
                 className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm"
                 data-cursor="pointer"
               >
-                <Download className="mr-2" size={20} />
-                Download Resume
+                <Eye className="mr-2" size={20} />
+                View Resume
               </button>
               <button
                 className="inline-flex items-center px-8 py-3 border border-slate-300 dark:border-slate-600 text-base font-medium rounded-lg text-slate-700 dark:text-slate-300 bg-white/60 dark:bg-slate-800/60 hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 backdrop-blur-sm"
@@ -151,6 +156,80 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
+      {/* Resume Modal */}
+      {isResumeModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-4xl h-full max-h-[90vh] bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+              <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Resume</h3>
+              <button
+                onClick={closeResumeModal}
+                className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <X size={20} className="text-slate-500 dark:text-slate-400" />
+              </button>
+            </div>
+
+            {/* PDF Viewer */}
+            <div className="w-full h-full flex flex-col">
+              <div className="flex-1 p-4">
+                <object
+                  data="/My-Resume.pdf"
+                  type="application/pdf"
+                  className="w-full h-full rounded-lg border border-slate-200 dark:border-slate-600"
+                  style={{ minHeight: '600px' }}
+                >
+                  {/* Fallback for browsers that don't support object tag */}
+                  <div className="flex flex-col items-center justify-center h-full bg-slate-50 dark:bg-slate-800 rounded-lg">
+                    <div className="text-center p-8">
+                      <Eye className="mx-auto mb-4 text-slate-400" size={48} />
+                      <h4 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                        PDF Viewer Not Available
+                      </h4>
+                      <p className="text-slate-600 dark:text-slate-400 mb-4">
+                        Your browser doesn't support inline PDF viewing.
+                      </p>
+                      <a
+                        href="/My-Resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg transition-colors"
+                      >
+                        <Eye className="mr-2" size={20} />
+                        Open PDF in New Tab
+                      </a>
+                    </div>
+                  </div>
+                </object>
+              </div>
+
+              {/* Alternative action buttons */}
+              <div className="p-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+                <div className="flex justify-center space-x-4">
+                  <a
+                    href="/My-Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
+                  >
+                    <Eye className="mr-2" size={16} />
+                    Open in New Tab
+                  </a>
+                  <a
+                    href="/My-Resume.pdf"
+                    download="John_Emmanuel_Resume.pdf"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+                  >
+                    <Eye className="mr-2" size={16} />
+                    Download PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   );
